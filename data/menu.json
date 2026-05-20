@@ -1,0 +1,12 @@
+[
+  {"id":1, "name":"Nachos", "category":"entrantes", "price":8.50, "video":"nachos.mp4", "description":"Nachos crujientes con queso fundido, jalapeños, guacamole y crema agria", "allergens":["gluten","lácteos"]},
+  {"id":2, "name":"Bacon Cheese Fries", "category":"entrantes", "price":9.00, "video":"bacon-cheese-fries.mp4", "description":"Patatas crujientes con cheddar fundido, bacon crujiente y cebollino", "allergens":["gluten","lácteos"]},
+  {"id":3, "name":"Classic Cheeseburger", "category":"hamburguesas", "price":12.50, "video":"classic-burger.mp4", "description":"Hamburguesa de ternera con queso americano, lechuga, tomate y pepinillos", "allergens":["gluten","lácteos"]},
+  {"id":4, "name":"BBQ Bacon Burger", "category":"hamburguesas", "price":14.00, "video":"bbq-bacon-burger.mp4", "description":"Hamburguesa con bacon, cheddar ahumado, aros de cebolla y salsa BBQ", "allergens":["gluten","lácteos"]},
+  {"id":5, "name":"Doble Smash Burger", "category":"hamburguesas", "price":15.00, "video":"smash-burger.mp4", "description":"Doble smash patty con queso americano y salsa especial", "allergens":["gluten","lácteos"]},
+  {"id":6, "name":"Truffle Mushroom Burger", "category":"hamburguesas", "price":17.50, "video":"truffle-mushroom-burger.mp4", "description":"Hamburguesa premium con gruyère, champiñones salteados y aceite de trufa", "allergens":["gluten","lácteos"]},
+  {"id":7, "name":"Patatas Fritas", "category":"acompañamientos", "price":4.50, "video":"patatas-fritas.mp4", "description":"Patatas fritas crujientes con sal marina", "allergens":[]},
+  {"id":8, "name":"Aros de Cebolla", "category":"acompañamientos", "price":5.50, "video":"aros-cebolla.mp4", "description":"Aros de cebolla en cerveza con mayo chipotle", "allergens":["gluten","huevo"]},
+  {"id":9, "name":"Cheesecake", "category":"postres", "price":6.50, "video":"cheesecake.mp4", "description":"Cheesecake estilo New York con compota de fresa", "allergens":["gluten","lácteos","huevo"]},
+  {"id":10, "name":"Red Velvet", "category":"postres", "price":6.50, "video":"red-velvet.mp4", "description":"Tarta red velvet con frosting de queso crema", "allergens":["gluten","lácteos","huevo"]}
+]
