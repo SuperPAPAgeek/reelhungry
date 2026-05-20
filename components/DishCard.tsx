@@ -76,13 +76,6 @@ export default function DishCard({ dish, isMuted }: DishCardProps) {
       {/* Gradiente inferior */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
 
-      {/* Overlay superior: logo */}
-      <div className="absolute top-0 left-0 right-0 flex justify-center pt-6 pointer-events-none">
-        <span className="text-white/60 text-xs tracking-[0.3em] uppercase font-light">
-          ReelHungry
-        </span>
-      </div>
-
       {/* Overlay inferior: info del plato */}
       <div className="absolute bottom-0 left-0 right-0 p-6 pb-8">
         {/* Categoría */}

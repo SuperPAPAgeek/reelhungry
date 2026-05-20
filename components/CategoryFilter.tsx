@@ -15,8 +15,8 @@ interface CategoryFilterProps {
 
 export default function CategoryFilter({ active, onChange }: CategoryFilterProps) {
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex gap-2 px-4 pt-safe overflow-x-auto scrollbar-hide">
-      <div className="flex gap-2 py-4 min-w-max">
+    <div className="fixed top-10 left-0 right-0 z-40 px-4 overflow-x-auto scrollbar-hide bg-black/30 backdrop-blur-xl border-b border-white/5">
+      <div className="flex gap-2 py-3 min-w-max">
         {CATEGORIES.map((cat) => {
           const isActive = active === cat.id;
           return (

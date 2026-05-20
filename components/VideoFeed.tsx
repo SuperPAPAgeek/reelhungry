@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import DishCard from "./DishCard";
 import CategoryFilter from "./CategoryFilter";
+
+const CATEGORY_ORDER = ["todos", "entrantes", "hamburguesas", "acompañamientos", "postres"];
 
 interface Dish {
   id: number;
@@ -24,6 +26,8 @@ export default function VideoFeed({ dishes }: VideoFeedProps) {
   const [isAnimating, setIsAnimating] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const prevCategory = useRef("todos");
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
 
   const filtered =
     activeCategory === "todos"
@@ -31,21 +35,44 @@ export default function VideoFeed({ dishes }: VideoFeedProps) {
       : dishes.filter((d) => d.category === activeCategory);
 
   function handleCategoryChange(category: string) {
+    // Siempre vuelve al inicio (incluso al pulsar "Todos" estando ya en "Todos")
+    if (containerRef.current) {
+      containerRef.current.scrollTo({ top: 0, behavior: "instant" });
+    }
     if (category === activeCategory) return;
     setIsAnimating(true);
     prevCategory.current = activeCategory;
     setActiveCategory(category);
-
-    // Volver al inicio del feed al cambiar categoría
-    if (containerRef.current) {
-      containerRef.current.scrollTo({ top: 0, behavior: "instant" });
-    }
-
     setTimeout(() => setIsAnimating(false), 300);
+  }
+
+  function handleTouchStart(e: React.TouchEvent) {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  }
+
+  function handleTouchEnd(e: React.TouchEvent) {
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+    const deltaY = e.changedTouches[0].clientY - touchStartY.current;
+    // Solo actúa si el gesto es más horizontal que vertical y supera 50px
+    if (Math.abs(deltaX) <= Math.abs(deltaY) || Math.abs(deltaX) < 50) return;
+    const idx = CATEGORY_ORDER.indexOf(activeCategory);
+    if (deltaX < 0 && idx < CATEGORY_ORDER.length - 1) {
+      handleCategoryChange(CATEGORY_ORDER[idx + 1]);
+    } else if (deltaX > 0 && idx > 0) {
+      handleCategoryChange(CATEGORY_ORDER[idx - 1]);
+    }
   }
 
   return (
     <div className="relative h-dvh w-full max-w-md mx-auto">
+      {/* Header global */}
+      <div className="fixed top-0 left-0 right-0 z-50 h-10 flex items-center justify-center bg-black/70 backdrop-blur-2xl border-b border-white/5">
+        <span className="text-white text-sm font-semibold tracking-[0.25em] uppercase">
+          ReelHungry
+        </span>
+      </div>
+
       {/* Filtros de categoría */}
       <CategoryFilter active={activeCategory} onChange={handleCategoryChange} />
 
@@ -53,6 +80,8 @@ export default function VideoFeed({ dishes }: VideoFeedProps) {
       <div
         ref={containerRef}
         className="snap-container"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
         style={{
           opacity: isAnimating ? 0 : 1,
           transition: "opacity 0.2s ease",
